@@ -113,14 +113,16 @@
     }
 
     /* Floating hearts */
-    .heart {
-      position: absolute;
-      bottom: -30px;
-      font-size: 22px;
-      animation: floatUp 7s linear infinite;
-      opacity: 0.9;
-      filter: drop-shadow(0 0 6px rgba(255,0,70,0.6));
-      z-index: 0;
+    
+    heart {
+     position: fixed;                 /* 👈 key change */
+     bottom: -30px;
+     font-size: 22px;
+     animation: floatUp 7s linear infinite;
+     opacity: 0.9;
+     filter: drop-shadow(0 0 6px rgba(255,0,70,0.6));
+     z-index: 9999;                   /* 👈 brings hearts to front */
+     pointer-events: none;
     }
 
     @keyframes floatUp {
@@ -216,6 +218,7 @@
 
 </body>
 </html>
+
 
 
 
