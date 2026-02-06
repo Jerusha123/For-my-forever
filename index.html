@@ -80,6 +80,7 @@
       padding: 30px;
       animation: fadeIn 1.5s ease;
       z-index: 1;
+      overflow: hidden; /* ✅ REQUIRED for hearts */
     }
 
     .reveal-content {
@@ -112,17 +113,15 @@
       z-index: 2;
     }
 
-    /* Floating hearts */
-    
-    heart {
-     position: fixed;                 /* 👈 key change */
-     bottom: -30px;
-     font-size: 22px;
-     animation: floatUp 7s linear infinite;
-     opacity: 0.9;
-     filter: drop-shadow(0 0 6px rgba(255,0,70,0.6));
-     z-index: 9999;                   /* 👈 brings hearts to front */
-     pointer-events: none;
+    /* Floating hearts — FIXED */
+    .heart {
+      position: absolute;
+      bottom: -30px;
+      font-size: 22px;
+      animation: floatUp 7s linear infinite;
+      opacity: 0.9;
+      filter: drop-shadow(0 0 6px rgba(255,0,70,0.6));
+      pointer-events: none;
     }
 
     @keyframes floatUp {
@@ -145,7 +144,6 @@
 
 <body>
 
-<!-- FIRST SCREEN -->
 <div class="container" id="mainBox">
   <h1>Hey You 💕</h1>
   <p>I have one very important question 👀</p>
@@ -161,7 +159,6 @@
   <button id="noBtn">NO 😏</button>
 </div>
 
-<!-- REVEAL SCREEN -->
 <div class="reveal" id="revealScreen">
   <div class="reveal-content">
     <strong>Kuttu ❤️</strong><br><br>
@@ -177,7 +174,6 @@
 
   <button class="final-btn">Come here, My forever Valentine 😌</button>
 
-  <!-- Spotify Embed (UPDATED TRACK) -->
   <iframe
     style="border-radius:14px; margin-top:25px; z-index:2;"
     src="https://open.spotify.com/embed/track/0W7HkmRq2zxpkfQ2IZMvVt"
@@ -210,7 +206,7 @@
       heart.innerText = "❤️";
       heart.style.left = Math.random() * 100 + "vw";
       heart.style.fontSize = (18 + Math.random() * 18) + "px";
-      document.body.appendChild(heart);
+      document.getElementById("revealScreen").appendChild(heart);
       setTimeout(() => heart.remove(), 7000);
     }, 450);
   }
@@ -218,7 +214,3 @@
 
 </body>
 </html>
-
-
-
-
